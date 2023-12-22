@@ -1,0 +1,43 @@
+Spotify API Licensing Agreement
+
+This Spotify API Licensing Agreement ("Agreement") is entered into by and between [Your Company/Organization Name] ("Licensee") and Spotify AB ("Spotify"). This Agreement sets forth the terms and conditions under which Licensee may access and use the Spotify API ("API") for the purpose of integrating Spotify's music and media content into Licensee's project ("Project").
+
+1. Grant of License
+Subject to the terms and conditions of this Agreement, Spotify hereby grants Licensee a non-exclusive, non-transferable, revocable license to access and use the Spotify API solely for the purpose of integrating Spotify's music and media content into Licensee's Project.
+
+2. Use of API
+Licensee agrees to comply with the Spotify Developer Terms of Use and Spotify Brand Guidelines, as provided by Spotify. Licensee acknowledges and agrees that any use of the API shall be in accordance with the Spotify Developer Terms of Use and other applicable terms provided by Spotify.
+
+3. Ownership
+Licensee acknowledges that Spotify retains all rights, title, and interest in and to the API, including all intellectual property rights. Licensee shall not acquire any ownership rights in the API by virtue of this Agreement.
+
+4. Restrictions
+Licensee shall not:
+   a. Use the API for any illegal, unauthorized, or unethical purposes.
+   b. Modify, adapt, reverse engineer, decompile, or disassemble the API.
+   c. Create a competing API or service using the API.
+   d. Use the API in a manner that could adversely affect Spotify's systems or services.
+
+5. Fees
+Unless otherwise agreed upon in writing, Licensee shall not be required to pay any fees to Spotify for the use of the API under this Agreement.
+
+6. Warranty Disclaimer
+SPOTIFY MAKES NO WARRANTIES, EXPRESS OR IMPLIED, WITH RESPECT TO THE API, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. THE API IS PROVIDED "AS IS."
+
+7. Limitation of Liability
+SPOTIFY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES ARISING OUT OF OR IN CONNECTION WITH THE API OR THIS AGREEMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+8. Term and Termination
+This Agreement shall commence on the Effective Date and shall continue until terminated by either party. Either party may terminate this Agreement at any time for any reason by providing written notice to the other party.
+
+9. Governing Law and Dispute Resolution
+This Agreement shall be governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising under or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].
+
+10. Entire Agreement
+This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior agreements, understandings, negotiations, and discussions, whether oral or written.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Spotify API Licensing Agreement as of the Effective Date.
+
+[Your Name]:
+Signature: Nikhil Sinclair   Date: 8/12/23
+

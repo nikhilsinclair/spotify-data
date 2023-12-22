@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Top Streamed Artists and Songs</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <script src="app.js"></script>
+
+    <style>
+      /* Additional Custom Styling */
+      body {
+        background-color: #000000; /* Black background */
+        color: white;
+      }
+
+      .card {
+        background-color: #181818;
+        border: none;
+        transition: transform 0.3s ease; /* Add smooth transition effect for hover */
+      }
+      .card:hover {
+        transform: scale(1.075); /* Enlarge the card on hover */
+      }
+      .card-title {
+        color: #ff69b4;
+      }
+      .card-text {
+        color: #b3b3b3;
+      }
+      .nav-tabs {
+        background-color: #000; /* Dark gray background */
+        background-color: #000; /* Grey tab background */
+        border: none;
+      }
+      .nav-link {
+        background-color: #181818; /* Dark gray background for unselected tabs */
+        color: #ff69b4; /* Set text color to white for better contrast */
+        border-color: #000; /* Border color for unselected tabs */
+      }
+      .nav-link.active {
+        background-color: #ff69b4; /* Pink background */
+        color: #333; /* Change text color to match the grey background */
+        border: 1px solid #333; /* Add a grey border */
+      }
+      .tab-content {
+        background-color: #000000; /* Black background */
+        padding: 20px;
+        border: 1px solid #333;
+      }
+      .footer {
+        background-color: #ff69b4; /* Pink footer */
+        color: #333;
+        padding: 20px;
+        text-align: center;
+      }
+      .footer h1 {
+        font-size: 15px;
+      }
+      .footer h5 {
+        font-size: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Your Top Streamed Artists and Songs</h1>
+
+      <!-- Tabs -->
+      <ul
+        class="nav nav-tabs justify-content-center mb-4"
+        id="myTabs"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="allTimeTab"
+            data-bs-toggle="tab"
+            data-bs-target="#allTime"
+            type="button"
+            role="tab"
+            aria-controls="allTime"
+            aria-selected="true"
+          >
+            All-Time
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="pastYearTab"
+            data-bs-toggle="tab"
+            data-bs-target="#pastYear"
+            type="button"
+            role="tab"
+            aria-controls="pastYear"
+            aria-selected="false"
+          >
+            Past Year
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="pastMonthTab"
+            data-bs-toggle="tab"
+            data-bs-target="#pastMonth"
+            type="button"
+            role="tab"
+            aria-controls="pastMonth"
+            aria-selected="false"
+          >
+            Past Month
+          </button>
+        </li>
+        <!-- Add the Recommended tab button -->
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="recommendedTab"
+            data-bs-toggle="tab"
+            data-bs-target="#recommended"
+            type="button"
+            role="tab"
+            aria-controls="recommended"
+            aria-selected="false"
+          >
+            Recommended
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="myTabsContent">
+        <!-- All-Time Tab -->
+        <div
+          class="tab-pane fade show active"
+          id="allTime"
+          role="tabpanel"
+          aria-labelledby="allTimeTab"
+        >
+          <!-- All-Time Artists -->
+          <h2 class="text-center mb-4">All-Time Top Streaming Artists</h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topArtistsAllTime -->
+            <% topArtistsAllTime.forEach((artist, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- artist.images.length ? artist.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3 rounded-circle"
+                  style="width: 100px; height: 100px"
+                  alt="<%- artist.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- artist.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- artist.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+
+          <!-- All-Time Top Tracks -->
+          <h2 class="text-center my-4">All-Time Top Songs</h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topTracksAllTime -->
+            <% topTracksAllTime.forEach((track, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- track.album.images.length ? track.album.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3"
+                  style="width: 100px; height: 100px"
+                  alt="<%- track.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- track.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- track.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    Artist: <%- track.artists[0].name %><br />
+                    Popularity: <%- track.popularity %><br />
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <!-- Past Year Tab -->
+        <div
+          class="tab-pane fade"
+          id="pastYear"
+          role="tabpanel"
+          aria-labelledby="pastYearTab"
+        >
+          <!-- Past Year Artists -->
+          <h2 class="text-center mb-4">
+            Top Streaming Artists of the Past Year
+          </h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topArtistsYear -->
+            <% topArtistsYear.forEach((artist, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- artist.images.length ? artist.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3 rounded-circle"
+                  style="width: 100px; height: 100px"
+                  alt="<%- artist.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- artist.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- artist.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+
+          <!-- Past Year Top Tracks -->
+          <h2 class="text-center my-4">Top Songs of the Past Year</h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topTracksYear -->
+            <% topTracksYear.forEach((track, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- track.album.images.length ? track.album.images                [0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3"
+                  style="width: 100px; height: 100px"
+                  alt="<%- track.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- track.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- track.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    Artist: <%- track.artists[0].name %><br />
+                    Popularity: <%- track.popularity %><br />
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <!-- Past Month Tab -->
+        <div
+          class="tab-pane fade"
+          id="pastMonth"
+          role="tabpanel"
+          aria-labelledby="pastMonthTab"
+        >
+          <!-- Past Month Artists -->
+          <h2 class="text-center mb-4">
+            Top Streaming Artists of the Past Month
+          </h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topArtistsMonth -->
+            <% topArtistsMonth.forEach((artist, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- artist.images.length ? artist.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3 rounded-circle"
+                  style="width: 100px; height: 100px"
+                  alt="<%- artist.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- artist.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- artist.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+
+          <!-- Past Month Top Tracks -->
+          <h2 class="text-center my-4">Top Songs of the Past Month</h2>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through topTracksMonth -->
+            <% topTracksMonth.forEach((track, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- track.album.images.length ? track.album.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3"
+                  style="width: 100px; height: 100px"
+                  alt="<%- track.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- track.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- track.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    Artist: <%- track.artists[0].name %><br />
+                    Popularity: <%- track.popularity %><br />
+                    #<%- index + 1 %>. Most Streamed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <!-- Recommended Tab -->
+        <div
+          class="tab-pane fade"
+          id="recommended"
+          role="tabpanel"
+          aria-labelledby="recommendedTab"
+        >
+          <!-- Recommended Artists -->
+          <h2 class="text-center mb-4">Recommended Artists</h2>
+          <h5 class="text-center mb-4">Based on your top artists</h5>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through recommendedArtists -->
+            <% recommendedArtists.forEach((artist, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- artist.images.length ? artist.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3 rounded-circle"
+                  style="width: 100px; height: 100px"
+                  alt="<%- artist.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- artist.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- artist.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    #<%- index + 1 %>. Recommended
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+
+          <!-- Recommended Tracks -->
+          <h2 class="text-center my-4">Recommended Songs</h2>
+          <h5 class="text-center my-4">Based on your top Songs</h5>
+          <div class="row row-cols-md-4 g-4">
+            <!-- Loop through recommendedTracks -->
+            <% recommendedTracks.forEach((track, index) => { %>
+            <div class="col">
+              <div class="card h-100 shadow">
+                <img
+                  src="<%- track.album.images.length ? track.album.images[0].url : 'No Image Available' %>"
+                  class="card-img-top mx-auto mt-3"
+                  style="width: 100px; height: 100px"
+                  alt="<%- track.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">
+                    <a
+                      href="<%- track.external_urls.spotify %>"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="text-decoration: none; color: #ff69b4"
+                    >
+                      <%- track.name %>
+                    </a>
+                  </h5>
+                  <p class="card-text text-center">
+                    Artist: <%- track.artists[0].name %><br />
+                    Popularity: <%- track.popularity %><br />
+                    #<%- index + 1 %>. Recommended
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <h1>
+          Thank you for using my Spotify summary app. If you have reccomendations for this website email: nikhil.sinclair@gmail.com
+        </h1>
+        <h5>
+          &copy; 2023 TuneTracking** N!K!. All rights reserved
+        </h5>
+      </footer>
+    </div>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+
+  <body>
+
+  </body>
+
+</html>

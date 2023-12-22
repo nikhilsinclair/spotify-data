@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "spotify-data",
+			"path": "."
+		},
+		{
+			"name": "spotify-web-api-node",
+			"path": "../node_modules/spotify-web-api-node"
+		}
+	],
+	"settings": {}
+}
